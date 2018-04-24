@@ -1,0 +1,35 @@
+
+<mat-grid-list [cols]="6" rowHeight="4:6" [gutterSize]="20">
+
+  <mat-grid-tile *ngFor='let item of items'>
+
+  <mat-card  class="recipe-card" >
+
+  <mat-card-header>
+    <mat-card-title>{{item.name}}</mat-card-title>
+  </mat-card-header>
+  <img  class="item-image" [src]="item.imageUrl">
+  <mat-card-content class="item-card-content">
+    <p>{{item.description}}</p>
+  </mat-card-content>
+  <mat-card-actions>
+
+    <div class="button-row">
+
+      <button mat-raised-button [routerLink]="[item._id]">Read More</button>
+
+      <button mat-icon-button color="primary">
+        <mat-icon aria-label="Edit">edit</mat-icon>
+      </button>
+
+      <button mat-icon-button color="warn">
+        <mat-icon aria-label="Delete">delete</mat-icon>
+      </button>
+
+    </div>
+
+  </mat-card-actions>
+</mat-card>
+  </mat-grid-tile>
+  </mat-grid-list>
+

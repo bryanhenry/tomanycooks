@@ -1,0 +1,41 @@
+<mat-toolbar color="primary">
+  <span>Too Many Cooks</span>
+  <span class="top-tooltar-right"></span>
+  <mat-icon>view_list</mat-icon>
+  <mat-icon (click)="addRecipe()">add</mat-icon>
+  <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+
+
+  <mat-sidenav #sidenav mode="side over" [(opened)]="opened" align="end">
+
+    <mat-form-field class="sidenav-search-form-field">
+      <input matInput type="text" placeholder="Search" [(ngModel)]="searchText"/>
+      <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="searchText=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <div class="sidenav-recipe-card"  *ngFor='let category of categories | filterSearch: searchText'>
+
+        <a fxLayout="row" fxLayoutAlign="left center" [routerLink]="[category.name.toLowerCase()]" (click)="opened = !opened">
+          <img class="sidenav-category-image" [src]="category.imageUrl">
+          <div style="padding-left: 8px;" [innerHTML]="category.name | highlight : searchText"></div>
+        </a>
+
+    </div>
+
+    </mat-sidenav>
+
+
+    <mat-sidenav-content>
+
+      <div>
+        <router-outlet></router-outlet>
+      </div>
+
+    </mat-sidenav-content>
+
+</mat-sidenav-container>

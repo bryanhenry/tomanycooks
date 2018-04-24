@@ -1,0 +1,8 @@
+version: '2'
+services:
+  mongo:
+    build: MongoDB/
+    ports:
+      - "27017:27017"
+      - "28017:28017"
+npm
